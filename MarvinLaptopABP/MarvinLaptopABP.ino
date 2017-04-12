@@ -26,9 +26,9 @@ int     led_port = 13;
 
 
 //*** Set parameters here BEGIN ---->
-String  set_nwkskey = "31802B55A47626C1DA0CCA7A901900CE"; // Put your 32 hex char here
-String  set_appskey = "1AEE4690EEA6B0978919C85DCB105BB6"; // Put your 32 hex char here
-String  set_devaddr = "260114AC"; // Put your 8 hex char here
+String  set_nwkskey = "BF7C020C8BF1468021894BFA37C6A0A3"; // Put your 32 hex char here
+String  set_appskey = "1E3F4F48280CF8610EFCA33BD9FAAD90"; // Put your 32 hex char here
+String  set_devaddr = "26011C0B"; // Put your 8 hex char here
 //String  set_devEUI = "00ADA3B2C28049BE";
 //*** <---- END Set parameters here
 
@@ -51,8 +51,8 @@ void setup() {
   print_to_console("Payload?");
 }
 
-string valueFromUS= "";
-void getData(){
+int valueFromUS= -2;
+void GetData(){
   long duration, distance;
   digitalWrite(trigPin, LOW);  // Added this line
   delayMicroseconds(2); // Added this line
@@ -70,7 +70,8 @@ void getData(){
 }
 void loop() {
   read_data_from_LoRa_Mod();
-  GetDatat();
+  
+  GetData();
   reader = String(valueFromUS,HEX);
 
   if (reader.length() >0) {
@@ -85,8 +86,9 @@ void loop() {
     reader = "";
     //delay(1000);
     print_to_console("Payload?");
-    Serial.read();
+    
   }
+  delay(10000);
 }
 
 void InitializeSerials(long baudrate)
